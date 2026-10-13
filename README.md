@@ -1,50 +1,28 @@
 # Grupo Orión · El valor de nuestro servicio
 
-Presentación interactiva de 18 escenas, preparada como sitio estático independiente a partir del DOM recuperado de la presentación original.
+Presentación interactiva de 21 escenas con tablero de incidencias de asistencia.
 
-## Publicación en Render
+## Fuente
 
-- Tipo de servicio: **Static Site**
-- Rama: la que contenga estos archivos
-- Build command: `echo "Static site ready"`
-- Publish directory: `.`
-- Página de entrada: `index.html`
+Actualización del 13 de octubre de 2026 a partir de `Presentacion_Grupo_Orion (9)(2).html`. `index.html` conserva exactamente el archivo recibido, sin cambios de contenido ni diseño. El dashboard en `public/incidencias/index.html` es una extracción exacta del contenido incrustado en `window.ORION_DASH` para que el enlace relativo funcione en línea.
 
-No requiere servidor de aplicaciones, dependencias de compilación, variables de entorno ni credenciales. Publicar solamente `index.html` y este archivo. Los archivos de captura, recuperación y comprobación no forman parte del sitio.
+La versión anterior de 18 escenas permanece en el historial de Git en el commit `a3a68bb36e48046f41b375953ab547ea6a6e8a6c`.
 
-## Uso
+## Render
 
-Abrir la URL pública en un navegador moderno. La presentación comienza en la primera escena; `#1` a `#18` permiten abrir una escena concreta.
+- Servicio existente: `orion-valor-servicio`
+- Tipo: Static Site
+- Rama: `main`
+- Build: `mkdir -p public && cp index.html public/index.html`
+- Directorio publicado: `public`
+- Presentación: `/` (escenas `#1` a `#21`)
+- Dashboard: `/incidencias/index.html`
+- Despliegue manual: los cambios de Git no activan publicación automática
 
-- Flecha derecha, espacio o Av Pág: siguiente escena
-- Flecha izquierda o Re Pág: escena anterior
-- G: índice
-- N: guía del presentador
-- D: detalle de la escena
-- T: reloj
-- F: pantalla completa cuando el navegador lo admite
-- M: movimiento reducido
-- P: pausar o reanudar el movimiento
-- B: pantalla negra
+## Controles
 
-En el celular se puede deslizar a los lados. La propia presentación incluye una vista alternativa cuando WebGL no está disponible.
+Flechas o espacio para navegar; G para índice; N para guía; D para detalle; T para reloj de 20 minutos; F para pantalla completa; M para movimiento reducido; P para pausar el movimiento; B para pantalla negra. El botón de la escena 4 abre el dashboard en otra pestaña.
 
-## Contenido y dependencias
+## Verificación técnica
 
-La presentación conserva sus imágenes, fuente incrustada, texto, notas para el presentador, estilos y lógica originales. Las notas están incluidas en el sitio y son accesibles mediante la herramienta Guía.
-
-Los únicos recursos externos son siete scripts públicos de Three.js, fijados a la versión r128 / 0.128.0, servidos desde cdnjs y jsDelivr. El sitio necesita acceso a esos CDN para las escenas 3D. No contiene integraciones de cuenta, formularios, API privadas ni solicitudes de autenticación. No se añadieron rastreadores.
-
-## Procedencia y cambios de preparación
-
-La fuente recuperada fue un DOM completo de la presentación original de Claude, capturado después de la ejecución de JavaScript. No es una exportación literal del archivo fuente previo a su ejecución.
-
-Preparación realizada:
-
-1. Eliminación del bloque de ejecución del visor de Claude: preámbulo, puente con el host y estilo básico del visor.
-2. Retirada de los envoltorios de palabras, elementos de navegación y caracteres del tablero generados por JavaScript, para que se construyan una sola vez al abrir el sitio.
-3. Restablecimiento de los valores finales de los contadores y del estado inicial de la interfaz, eliminando el estado capturado en la escena 10 y la clase de ausencia de WebGL del entorno de captura.
-
-No se modificaron las cifras, el contenido editorial, los 18 apartados, las imágenes, la hoja de estilos propia de la presentación ni su código JavaScript. Los scripts propios, la hoja de estilos y las imágenes se compararon con la captura para comprobar que se conservaron sin cambios. Los tres scripts en línea pasaron la comprobación de sintaxis `node --check`.
-
-La disponibilidad real de WebGL depende del navegador y del dispositivo. La comprobación visual en un entorno sin WebGL no valida la ejecución de los efectos 3D.
+Los 11 scripts de la presentación y el script del dashboard pasan comprobación de sintaxis. Las 21 escenas coinciden con la configuración de navegación y no hay IDs HTML duplicados. Imágenes y fuente de la presentación están incorporadas; el dashboard utiliza Google Fonts. Los efectos 3D requieren WebGL disponible en el navegador.
