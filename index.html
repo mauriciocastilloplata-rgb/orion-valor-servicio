@@ -3045,6 +3045,36 @@ br.lb-portrait { display: none; }
   .scene[data-layout="incsal"] .sal-facts li { font-size: calc(var(--u) * 1.25); line-height: 1.3; }
 }
 
+/* ======================= v43 · lo que cuesta faltar: the 2,285 days, in pesos ======================= */
+/* the number and its caption share a row, the pesos take the row below, in gold */
+.sal-big { grid-template-columns: auto minmax(0, 1fr); column-gap: calc(var(--u) * 1.1); row-gap: 0; align-items: center; }
+.sal-big > span { max-width: 13em; }
+.sal-mxn {
+  grid-column: 1 / -1; margin: calc(var(--u) * 0.55) 0 0; padding-top: calc(var(--u) * 0.6); border-top: 1px solid rgba(255, 170, 160, 0.35);
+  display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 0.4em;
+}
+.sal-big .sal-mxn b {
+  font-family: var(--display); font-weight: 850; font-size: calc(var(--u) * 3.5); line-height: 1; letter-spacing: 0.005em; color: #ffd25e;
+  text-shadow: 0 0 30px rgba(255, 196, 70, 0.5); font-variant-numeric: tabular-nums;
+}
+.sal-big .sal-mxn .sm-ap { font-weight: 700; font-size: 0.72em; margin-right: 0.08em; opacity: 0.9; }
+.sal-big .sal-mxn b .num { font-size: 1em; line-height: inherit; color: inherit; max-width: none; }
+.sal-big .sal-mxn .sm-u { font-family: var(--display); font-weight: 750; font-size: calc(var(--u) * 1.8); color: #ffe6a8; max-width: none; }
+.scene.play .sal-mxn { animation: rise 0.9s var(--ease-out) both 1.6s; }
+.scene.play .sal-mxn b { animation: smGlow 3.2s ease-in-out 3.6s infinite; }
+@keyframes smGlow { 0%, 100% { text-shadow: 0 0 30px rgba(255, 196, 70, 0.5); } 50% { text-shadow: 0 0 44px rgba(255, 196, 70, 0.85); } }
+.reduced .sal-mxn, .reduced .sal-mxn b { animation: none !important; }
+@media (max-aspect-ratio: 1/1) {
+  .sal-big > span { max-width: none; }
+  .sal-big .sal-mxn b { font-size: calc(var(--u) * 3.3); }
+  .sal-big .sal-mxn .sm-u { font-size: calc(var(--u) * 1.7); }
+}
+@media (max-height: 480px) and (min-aspect-ratio: 1/1) {
+  .sal-mxn { margin-top: calc(var(--u) * 0.35); padding-top: calc(var(--u) * 0.4); }
+  .sal-big .sal-mxn b { font-size: calc(var(--u) * 2.8); }
+  .sal-big .sal-mxn .sm-u { font-size: calc(var(--u) * 1.5); }
+}
+
 </style>
 </head>
 <body>
@@ -3745,11 +3775,11 @@ br.lb-portrait { display: none; }
   </section>
 
   <!-- 25 · impacto general · una falta = un día de salario -->
-  <section class="scene" data-layout="incsal" data-id="inc_salario" data-alert aria-label="Escena 25: Impacto general: una falta es un día de salario menos">
+  <section class="scene" data-layout="incsal" data-id="inc_salario" data-alert aria-label="Escena 25: Impacto general: una falta es un día de salario menos. 2,285 días de salario descontados, aproximadamente 900 mil pesos">
     <div class="copy">
       <p class="kicker grp-k g-all rise"><span class="gk"><span class="gk-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="19.5" cy="7.5" r="3.6"/><path d="M18.6 12.6l-.9 13.6h11.8l3.6 10.6"/><path d="M18.4 18.6h8.6"/><path d="M13.4 21.4a10.8 10.8 0 1 0 15.6 14"/></svg><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="14" width="30" height="25" rx="4.5"/><path d="M18 14V9h12v5"/><path d="M17 20v13M24 20v13M31 20v13"/><circle cx="16" cy="43" r="2.4"/><circle cx="32" cy="43" r="2.4"/></svg></span>Impacto general</span><span class="gk-t">Lo que cuesta faltar · AICM · Enero a septiembre 2026</span></p>
       <h2 class="title t-m" data-split>UNA FALTA = <br class="lb-landscape">UN DÍA DE SALARIO MENOS</h2>
-      <div class="sal-big rise" style="--d:400"><b class="num" data-count="2285" data-delay="700">2,285</b><span>días de salario descontados por faltas injustificadas</span></div>
+      <div class="sal-big rise" style="--d:400"><b class="num" data-count="2285" data-delay="700">2,285</b><span>días de salario descontados por faltas injustificadas</span><p class="sal-mxn"><b><span class="sm-ap">≈</span> $<span class="num" data-count="900" data-delay="1900">900</span> mil</b><span class="sm-u">pesos</span></p></div>
       <ul class="sal-facts rise" style="--d:650">
         <li class="is-eq">Equivalen a <b>más de 6 años de salario</b> de una persona</li>
         <li><b>442 personas</b> con descuento: <b>5 días</b> en promedio a cada una</li>
@@ -4911,7 +4941,7 @@ window.ORION_MX = {"polys":[[[-13.864,8.933],[-11.66,9.116],[-11.762,8.909],[-8.
     { id: 'inc_dia', name: 'Impacto general · Cada día, 8 personas no llegan y 26 llegan tarde', time: 60, alert: true, bloom: 0.45,
       notes: "Promedio por día calendario de enero a septiembre (273 días) en el AICM: 2,268 faltas injustificadas entre 273 días = 8 por día; 7,030 retardos entre 273 días = 26 por día. Representantes de Servicios: 7 faltas y 24 retardos al día; bandas: 1 falta y 2 retardos al día.\n\nCada falta y cada retardo es un lugar vacío al inicio del turno, con la operación ya en marcha. En nueve meses sumaron 811 horas de retardo (≈7 minutos cada uno) y 104 salidas antes de tiempo (199 horas).\n\nEn pantalla, un día promedio: 8 figuras rojas que no llegan y 26 ámbar que llegan tarde." },
     { id: 'inc_salario', name: 'Impacto general · Una falta = un día de salario menos', time: 60, alert: true, bloom: 0.45,
-      notes: "Cada falta injustificada se descuenta del salario: un día por falta; las faltas por regreso también son faltas injustificadas. En el AICM, de enero a septiembre: 2,268 faltas injustificadas y 17 faltas por regreso = 2,285 días de salario descontados, a 442 personas: 5 días en promedio a cada una. Esos 2,285 días equivalen a más de 6 años de salario de una persona (2,285 ÷ 365 = 6.3). Representantes de Servicios: 2,017 días (367 personas, 5.5 en promedio); bandas: 268 días (75 personas, 3.6 en promedio).\n\nPor persona: 1 a 2 días, 145; 3 a 5 días, 134; 6 a 10 días, 113; 11 días o más, 50. Sin ninguna falta injustificada: 113 de 555.\n\nNo se expresa en pesos. No señalar a personas." },
+      notes: "Cada falta injustificada se descuenta del salario: un día por falta; las faltas por regreso también son faltas injustificadas. En el AICM, de enero a septiembre: 2,268 faltas injustificadas y 17 faltas por regreso = 2,285 días de salario descontados, a 442 personas: 5 días en promedio a cada una. Esos 2,285 días equivalen a más de 6 años de salario de una persona (2,285 ÷ 365 = 6.3). Representantes de Servicios: 2,017 días (367 personas, 5.5 en promedio); bandas: 268 días (75 personas, 3.6 en promedio).\n\nPor persona: 1 a 2 días, 145; 3 a 5 días, 134; 6 a 10 días, 113; 11 días o más, 50. Sin ninguna falta injustificada: 113 de 555.\n\nEn pesos, esos 2,285 días representan aproximadamente 900 mil pesos (cifra redondeada). No señalar a personas.\n\nEn pantalla, bajo los 2,285 días aparece su equivalente: ≈ $900 mil pesos." },
     { id: 'gratuito', name: 'Los dos servicios · El servicio es gratuito', time: 50,
       notes: "Regla común a los dos servicios. Leer el lema completo y exactamente: «EL SERVICIO ES GRATUITO, LA PROPINA NO SE PIDE, NO SE SUGIERE, NO SE COBRA, ES VOLUNTARIA». Dar una pausa después de cada parte; en pantalla, cada frase aparece por separado. En sillas de ruedas, el manual establece no cobrar ni sugerir al pasajero remuneración alguna, en especie o en moneda fraccionaria, por el servicio realizado (pág. 55). En mostradores y bandas, el curso de inducción prohíbe cobrar, pedir o sugerir al pasajero, porque el servicio es gratuito (diap. 9). La asistencia y el trato respetuoso siguen el mismo procedimiento, exista o no una propina voluntaria. La foto muestra el chaleco con la leyenda «Servicio gratuito». No introducir montos, porcentajes ni formas de insinuación. Las oportunidades de recibir una propina existen cuando se da el servicio, y la propina siempre es voluntaria." },
     { id: 'esperamos', name: 'Lo que esperamos a partir de hoy', time: 40, bloom: 0.9,
@@ -4947,7 +4977,7 @@ window.ORION_MX = {"polys":[[[-13.864,8.933],[-11.66,9.116],[-11.762,8.909],[-8.
     inc_mes: '<p><b>Mes con mes, cientos de retardos y faltas:</b> ningún mes bajó de 471 retardos ni de 186 faltas.</p><ul><li><b>Junio</b>, el mes más alto: 989 retardos y 295 faltas.</li><li><b>Agosto y septiembre</b> bajaron: en septiembre, 471 retardos y 186 faltas, todavía 16 retardos y 6 faltas cada día.</li><li><b>Septiembre</b>: 35 festivos no laborados, el mes con más.</li></ul>',
     inc_dias: '<ul><li>Sábado, domingo y lunes suman <b>1,244 de 2,268</b> faltas injustificadas: más de la mitad.</li><li>El domingo es el día con más: <b>495</b>.</li><li><b>4 de cada 10</b> faltas fueron un día anterior o posterior al descanso.</li><li><b>Incapacidades del IMSS:</b> también 4 de cada 10 faltas por incapacidad fueron un día anterior o posterior al descanso (163 de 408).</li></ul>',
     inc_dia: '<p>Un día promedio en el AICM, de enero a septiembre:</p><ul><li><b>8 personas no llegan</b>: faltas injustificadas.</li><li><b>26 llegan tarde</b>: retardos.</li><li>Representantes de Servicios: 7 faltas y 24 retardos al día; bandas: 1 falta y 2 retardos.</li></ul><p>En nueve meses: 811 horas de retardo y 104 salidas antes de tiempo.</p>',
-    inc_salario: '<p><b>Una falta injustificada = un día de salario descontado.</b></p><ul><li><b>2,285 días</b> de salario descontados en el AICM, de enero a septiembre.</li><li>Equivalen a <b>más de 6 años de salario</b> de una persona.</li><li><b>442 personas</b> con descuento: 5 días en promedio a cada una.</li><li><b>50 personas</b> perdieron 11 días o más.</li></ul>',
+    inc_salario: '<p><b>Una falta injustificada = un día de salario descontado.</b></p><ul><li><b>2,285 días</b> de salario descontados en el AICM, de enero a septiembre: <b>≈ $900 mil pesos</b>.</li><li>Equivalen a <b>más de 6 años de salario</b> de una persona.</li><li><b>442 personas</b> con descuento: 5 días en promedio a cada una.</li><li><b>50 personas</b> perdieron 11 días o más.</li></ul>',
     gratuito: '<p>EL SERVICIO ES GRATUITO, LA PROPINA NO SE PIDE, NO SE SUGIERE, NO SE COBRA, ES VOLUNTARIA.</p><p>Aplica a los dos servicios: en sillas de ruedas y en mostradores y bandas está prohibido cobrar, pedir o sugerir al pasajero cualquier remuneración.</p><p>La asistencia y el trato respetuoso siguen el mismo procedimiento, exista o no una propina voluntaria.</p>',
     esperamos: '<p>Lo que esperamos a partir de hoy:</p><ol><li><b>Cero incidencias.</b></li><li><b>Cero abandonos.</b></li><li><b>Cero faltas.</b></li></ol><p><b>100%:</b> el compromiso de todo el personal.</p>',
   };
